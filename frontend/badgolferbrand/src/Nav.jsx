@@ -119,11 +119,13 @@ function Nav(){
                     </Link>
                 </div>
                 <div>
-                    <h1 style={{marginTop:'5px'}}>Bad Golfer Brand</h1>
+                    <h1 style={{marginTop:'5px', fontStyle:''}}>Bad Golfer Brand</h1>
                 </div>
                 <div style={{marginRight:'25px', display: 'inline-flex', alignItems: 'center', gap: '20px'}}>
                     <div>
-                        <FontAwesomeIcon icon={faCartShopping} style={{cursor: 'pointer', height: '24px', width: '24px'}} />
+                        <Link to="/cart" style={{color: 'black'}}>
+                            <FontAwesomeIcon icon={faCartShopping} style={{cursor: 'pointer', height: '24px', width: '24px'}} />
+                        </Link>
                     </div>
                     <div style={{cursor: 'pointer'}} onClick={toggleMenu}>
                         <FontAwesomeIcon icon={faBars} size="lg" />
