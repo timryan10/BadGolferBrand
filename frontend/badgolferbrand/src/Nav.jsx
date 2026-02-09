@@ -16,120 +16,58 @@ function Nav(){
             {/* Backdrop */}
             {isOpen && (
                 <div 
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'rgba(0,0,0,0.5)',
-                        zIndex: 999
-                    }}
+                    className="nav__backdrop"
                     onClick={toggleMenu}
                 />
             )}
 
             {/* Sidebar Menu */}
-            <div style={{
-                position: 'fixed',
-                top: 0,
-                right: isOpen ? 0 : '-350px',
-                width: '350px',
-                height: '100%',
-                backgroundColor: 'white',
-                transition: 'right 0.3s ease',
-                zIndex: 1000,
-                boxShadow: isOpen ? '-2px 0 10px rgba(0,0,0,0.2)' : 'none',
-                overflowY: 'auto'
-            }}>
-                {/* Close Button */}
-                <div style={{
-                    padding: '20px',
-                    textAlign: 'right',
-                    borderBottom: '1px solid #e5e5e5'
-                }}>
+            <div className={`nav__drawer ${isOpen ? 'nav__drawer--open' : ''}`}>
+                <div className="nav__drawer-header">
                     <FontAwesomeIcon 
                         icon={faXmark} 
                         size="xl" 
-                        style={{cursor: 'pointer'}} 
+                        className="nav__drawer-close"
                         onClick={toggleMenu}
                     />
                 </div>
 
-                {/* Menu Items */}
-                <div style={{padding: '20px 0'}}>
-                    <Link to="/golf-apparel" style={{textDecoration: 'none', color: 'black'}} onClick={toggleMenu}>
-                        <div style={{
-                            padding: '20px 30px',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            fontSize: '18px',
-                            fontWeight: '500'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}>
-                            <span>Golf Apparel</span>
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </div>
+                <div className="nav__drawer-list">
+                    <Link to="/golf-apparel" className="nav__drawer-link" onClick={toggleMenu}>
+                        <span>Golf Apparel</span>
+                        <FontAwesomeIcon icon={faChevronRight} />
                     </Link>
-
-                    <Link to="/sweatshirts" style={{textDecoration: 'none', color: 'black'}} onClick={toggleMenu}>
-                        <div style={{
-                            padding: '20px 30px',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            fontSize: '18px',
-                            fontWeight: '500'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}>
-                            <span>Sweatshirts</span>
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </div>
+                    <Link to="/sweatshirts" className="nav__drawer-link" onClick={toggleMenu}>
+                        <span>Longsleeves</span>
+                        <FontAwesomeIcon icon={faChevronRight} />
                     </Link>
-
-                    <Link to="/hats" style={{textDecoration: 'none', color: 'black'}} onClick={toggleMenu}>
-                        <div style={{
-                            padding: '20px 30px',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            fontSize: '18px',
-                            fontWeight: '500'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}>
-                            <span>Hats</span>
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </div>
+                    <Link to="/hats" className="nav__drawer-link" onClick={toggleMenu}>
+                        <span>Hats</span>
+                        <FontAwesomeIcon icon={faChevronRight} />
                     </Link>
                 </div>
             </div>
 
             {/* Nav Bar */}
-            <nav style={{display: 'inline-flex', borderBottom: '2px solid black', width: '100%',height: '60px', justifyContent: 'space-between', alignItems: 'center', padding: '10px', position: 'relative'}}>
-                <div style={{display: 'inline-flex', alignItems: 'center', gap: '20px'}}>
-                    <Link to="/">
-                        <img src={logo} alt="Bad Golfer Logo" style={{height:'50px', width:'50px', marginTop:'5px'}}/>
+            <nav className="nav">
+                <div className="nav__left">
+                    <Link to="/" className="nav__brand">
+                        <img src={logo} alt="Bad Golfer Logo" className="nav__logo" />
+                        <h1 className="nav__title">Bad Golfer Brand</h1>
                     </Link>
                 </div>
-                <div>
-                    <h1 style={{marginTop:'5px', fontStyle:''}}>Bad Golfer Brand</h1>
+                <div className="nav__center">
+                    <Link to="/golf-apparel" className="nav__link">Golf Apparel</Link>
+                    <Link to="/hats" className="nav__link">Hats</Link>
+                    <Link to="/sweatshirts" className="nav__link">Longsleeves</Link>
                 </div>
-                <div style={{marginRight:'25px', display: 'inline-flex', alignItems: 'center', gap: '20px'}}>
-                    <div>
-                        <Link to="/cart" style={{color: 'black'}}>
-                            <FontAwesomeIcon icon={faCartShopping} style={{cursor: 'pointer', height: '24px', width: '24px'}} />
-                        </Link>
-                    </div>
-                    <div style={{cursor: 'pointer'}} onClick={toggleMenu}>
-                        <FontAwesomeIcon icon={faBars} size="lg" />
-                    </div>
+                <div className="nav__right">
+                    <Link to="/cart" className="nav__cart">
+                        <FontAwesomeIcon icon={faCartShopping} />
+                    </Link>
+                    <button className="nav__hamburger" type="button" onClick={toggleMenu} aria-label="Open menu">
+                        <FontAwesomeIcon icon={faBars} />
+                    </button>
                 </div>
             </nav>
         </>
