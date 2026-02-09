@@ -4,9 +4,9 @@ import { faInstagram, faTiktok} from '@fortawesome/free-brands-svg-icons';
 
 function Footer(){
     return(
-        <div style={{backgroundColor: 'black', color: 'white', textAlign: 'center', padding: '20px', marginTop: '20px'}}>
+        <div className="footer">
             <p>&copy; 2024 Bad Golfer Brand. All rights reserved.</p>
-            <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
+            <div className="footer__socials">
                 <Link to= 'https://www.instagram.com/badgolfer.brand?igsh=eWQ1djQ1Mnl3ejhp&utm_source=qr' style={{color: 'white', fontSize:'24px'}}>
                     <FontAwesomeIcon icon={faInstagram} />
                 </Link>
