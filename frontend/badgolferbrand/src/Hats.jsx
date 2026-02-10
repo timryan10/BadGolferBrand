@@ -1,4 +1,5 @@
 import useProducts from './hooks/useProducts';
+import { Link } from 'react-router-dom';
 
 function Hats(){
     const { data, loading, error } = useProducts();
@@ -26,34 +27,42 @@ function Hats(){
                     margin: '0 auto'
                 }}>
                     {hats.map((hat, index) => (
-                        <div key={index} style={{
-                            border: '1px solid #ddd',
-                            borderRadius: '8px',
-                            overflow: 'hidden',
-                            cursor: 'pointer',
-                            transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-5px)';
-                            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = 'none';
-                        }}>
-                            <img 
-                                src={hat.image} 
-                                alt={hat.name}
-                                style={{
-                                    width: '100%',
-                                    height: '300px',
-                                    objectFit: 'cover'
-                                }}
-                            />
-                            <div style={{padding: '15px', textAlign: 'center'}}>
-                                <h3 style={{margin: '0', fontSize: '16px'}}>{hat.name}</h3>
+                        <Link
+                            key={index}
+                            to={`/product/${encodeURIComponent(hat.filename)}`}
+                            style={{ textDecoration: 'none', color: 'inherit' }}
+                        >
+                            <div style={{
+                                border: '1px solid #ddd',
+                                borderRadius: '8px',
+                                overflow: 'hidden',
+                                cursor: 'pointer',
+                                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'translateY(-5px)';
+                                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = 'none';
+                            }}>
+                                <img 
+                                    src={hat.image} 
+                                    alt={hat.name}
+                                    loading="lazy"
+                                    decoding="async"
+                                    style={{
+                                        width: '100%',
+                                        height: '300px',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                                <div style={{padding: '15px', textAlign: 'center'}}>
+                                    <h3 style={{margin: '0', fontSize: '16px'}}>{hat.name}</h3>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             )}

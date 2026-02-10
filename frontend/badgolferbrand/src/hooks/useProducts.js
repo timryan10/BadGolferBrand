@@ -24,6 +24,7 @@ function useProducts() {
           throw new Error(`Failed to load products (${res.status})`);
         }
         const json = await res.json();
+        console.log('Fetched products:', json);
         if (!ignore) {
           setData({
             mens: json.mens ?? [],

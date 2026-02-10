@@ -1,5 +1,5 @@
 import logo from './Imgs/Badgolferlogo.png';
-import { faCartShopping, faBars, faXmark, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faBars, faXmark, faChevronRight, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -53,7 +53,7 @@ function Nav(){
                 <div className="nav__left">
                     <Link to="/" className="nav__brand">
                         <img src={logo} alt="Bad Golfer Logo" className="nav__logo" />
-                        <h1 className="nav__title">Bad Golfer Brand</h1>
+                        <h1 className="nav__title" style={{fontSize: '30px', fontFamily:'Oswald semi-bold'}}> <strong>bad golfer</strong></h1>
                     </Link>
                 </div>
                 <div className="nav__center">
@@ -61,10 +61,11 @@ function Nav(){
                     <Link to="/hats" className="nav__link">Hats</Link>
                     <Link to="/sweatshirts" className="nav__link">Longsleeves</Link>
                 </div>
-                <div className="nav__right">
+                <div className="nav__right" style={{display:'flex', justifyContent:'space-evenly', fontSize:'24px'}}>
                     <Link to="/cart" className="nav__cart">
                         <FontAwesomeIcon icon={faCartShopping} />
                     </Link>
+                    <FontAwesomeIcon icon={faUser} className="nav__user" />
                     <button className="nav__hamburger" type="button" onClick={toggleMenu} aria-label="Open menu">
                         <FontAwesomeIcon icon={faBars} />
                     </button>

@@ -7,6 +7,7 @@ import Hats from './Hats';
 import Hoodies from './Hoodies_and_Sweatshirts';
 import Footer from './Footer';
 import Cart from './Cart';
+import Product from './Product';
 
 function App() {
   return (
@@ -16,8 +17,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/golf-apparel" element={<GolfApparel />} />
+          
           <Route path="/sweatshirts" element={<Hoodies />} />
           <Route path="/hats" element={<Hats />} />
+          <Route path="/product/:filename" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
