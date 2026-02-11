@@ -4,8 +4,15 @@ function Cart(){
 
     const [cart, setCart] = useState(() => {
         const storedCart = localStorage.getItem('cart');
+        console.log(storedCart)
         return storedCart ? JSON.parse(storedCart) : [];
     });
+
+    const handleDelete = (index) => {
+        const updatedCart = cart.filter((_, i) => i !== index);
+        setCart(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
 
     return(
         <div>
@@ -36,6 +43,17 @@ function Cart(){
                                 <h3 style={{ margin: 0, fontSize: '18px' }}>{item.name}</h3>
                                 <p style={{ margin: '6px 0 0', color: '#666' }}>{item.filename}</p>
                             </div>
+                            <button onClick={() => handleDelete(index)} style={{
+                                marginLeft: 'auto',
+                                padding: '8px 16px',
+                                backgroundColor: 'crimson',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '4px',
+                                cursor: 'pointer'
+                            }}>
+                                Remove
+                            </button>
                         </div>
                     ))}
                 </div>
