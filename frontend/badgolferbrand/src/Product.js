@@ -1,10 +1,26 @@
 import { Link, useParams } from 'react-router-dom';
 import useProducts from './hooks/useProducts';
+import { useState, useEffect } from 'react';
 
 function Product(){
     const { filename } = useParams();
     const { data, loading, error } = useProducts();
     const decodedFilename = decodeURIComponent(filename || '');
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            setCart(JSON.parse(storedCart));
+        }
+    }, []);
+
+    const addToCart = (product) => {
+        const updatedCart = [...cart, product];
+        setCart(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        console.log('Added to cart:', product);
+    }
 
     const allProducts = [
         ...data.mens,
@@ -41,7 +57,7 @@ function Product(){
                     <div style={{textAlign: 'left'}}>
                         <h1 style={{marginTop: 0}}>{product.name}</h1>
                         <p style={{color: '#666'}}>Product ID: {product.filename}</p>
-                        <button
+                        <button onClick={() => addToCart(product)}
                             type="button"
                             style={{
                                 marginTop: '20px',
